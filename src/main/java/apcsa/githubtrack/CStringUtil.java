@@ -1,3 +1,9 @@
 package apcsa.githubtrack;
 
-// Implement your CStringUtil class here
+public class CStringUtil
+{
+    public static Boolean isPalindrome(CString str)
+    {
+        if ()
+    }
+}

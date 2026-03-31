@@ -6,6 +6,17 @@ public class CString // Class header
     private int length;
     private String[] word;
     
+    // Accessor Methods
+    public int getLength()
+    {
+        return this.length;
+    }
+
+    public String[] getCString()
+    {
+        return this.word;
+    }
+
     public CString(String str) // Object constructor
     {
         String[] cstring = new String[str.length()]; // Initialize an array of size str
