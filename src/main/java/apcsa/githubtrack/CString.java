@@ -59,6 +59,21 @@ public class CString // Class header
     // Method/behavior 3: Sorting the characters in descending alphabetical order using Selection Sort
     public void sortDescending(CString str)
     {
-        
+        for (int j = 0; j < str.length - 1; j++) // loop through all the characters in the CString
+        {
+            int minIndex = j;
+            for (int k = j + 1; k < str.length; k++) 
+            {
+                if (str.word[k].compareTo(str.word[minIndex]) > 0) 
+                // If the character at k is lexicographically more than the one at minIndex...
+                {
+                    minIndex = k; // Move the minIndex to index k
+                }
+            }
+            // Swap the elements at j and minIndex
+            String temp = str.word[j];
+            str.word[j] = str.word[minIndex];
+            str.word[minIndex] = temp;
+        }
     }
 }
