@@ -1,45 +1,38 @@
 package apcsa.githubtrack;
 
-// Implement your CString class here
 public class CString // Class header
 {
-    private int length;
-    private String[] word;
+    private char[] word;
     
-    // Accessor Methods
-    public int getLength()
-    {
-        return this.length;
-    }
-
-    public String[] getCString()
+    // Accessor Method
+    public char[] getWord()
     {
         return this.word;
     }
 
     public CString(String str) // Object constructor
     {
-        String[] cstring = new String[str.length()]; // Initialize an array of size str
-        for (int i=0; i<str.length() - 1; i++)
+        char[] cstring = new char[str.length()]; // Initialize an array of size str so each item can be one character of the string parameter
+        for (int i=0; i<str.length(); i++)
         {
-            cstring[i] = str.substring(i, i+1); // Add each character to the array
+            cstring[i] = str.charAt(i); // Add each character to the array
         }
-        this.length = cstring.length;
         this.word = cstring;
     }
 
     // Method/behavior 1: reversing the characters in the CString parameter
-    public void reverse(CString str)
+    public void reverse()
     {
         // Use an array reversal algorithm with a temp variable
-        int start = 0;
-        int end = str.length - 1;
+        // Start at the endpoints of the array
+        int start = 0; 
+        int end = this.word.length - 1;
         
-        while (start < end) // The loop swaps the first and last elements in the array and works inward
+        while (start < end) // The loop swaps the first and last elements in the array and then works inward
         {
-            String temp = str.word[start];
-            str.word[start] = str.word[end];
-            str.word[end] = temp;
+            char temp = this.word[start];
+            this.word[start] = this.word[end];
+            this.word[end] = temp;
             
             start++;
             end--;
@@ -47,44 +40,39 @@ public class CString // Class header
     }
 
     // Method/behavior 2: Sorting the characters in ascending alphabetical order using Selection Sort
-    public void sortAscending(CString str)
+    public void sortAscending()
     {
-        for (int j = 0; j < str.length - 1; j++) // loop through all the characters in the CString
+        for (int j = 0; j < this.word.length - 1; j++) // loop through all the characters in the CString
         {
             int minIndex = j;
-            for (int k = j + 1; k < str.length; k++) 
+            for (int k = j + 1; k < this.word.length; k++) // loop through the rest of the characters
             {
-                if (str.word[k].compareTo(str.word[minIndex]) < 0) 
-                // If the character at k is lexicographically less than the one at minIndex...
+                // If the character in question is lexicographically less than the character at the minIndex...
+                if (this.word[k] < this.word[minIndex]) 
                 {
                     minIndex = k; // Move the minIndex to index k
                 }
             }
             // Swap the elements at j and minIndex
-            String temp = str.word[j];
-            str.word[j] = str.word[minIndex];
-            str.word[minIndex] = temp;
+            char temp = this.word[j];
+            this.word[j] = this.word[minIndex];
+            this.word[minIndex] = temp;
         }
     }
 
     // Method/behavior 3: Sorting the characters in descending alphabetical order using Selection Sort
-    public void sortDescending(CString str)
+    public void sortDescending()
     {
-        for (int j = 0; j < str.length - 1; j++) // loop through all the characters in the CString
+        for (int j = 1; j < this.word.length; j++)
         {
-            int minIndex = j;
-            for (int k = j + 1; k < str.length; k++) 
+            char temp = this.word[j];
+            int possibleIndex = j;
+            while (possibleIndex > 0 && temp < this.word[possibleIndex - 1])
             {
-                if (str.word[k].compareTo(str.word[minIndex]) > 0) 
-                // If the character at k is lexicographically more than the one at minIndex...
-                {
-                    minIndex = k; // Move the minIndex to index k
-                }
+                this.word[possibleIndex] = this.word[possibleIndex - 1];
+                possibleIndex--;
             }
-            // Swap the elements at j and minIndex
-            String temp = str.word[j];
-            str.word[j] = str.word[minIndex];
-            str.word[minIndex] = temp;
+            this.word[possibleIndex] = temp;
         }
     }
 }
