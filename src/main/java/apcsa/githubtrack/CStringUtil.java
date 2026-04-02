@@ -140,21 +140,57 @@ public class CStringUtil
     {
         for (int i = 0; i < nums.length; i++)
         {
-            for (int j = i+1; I)
-            if (nums[i] == 6)
+            if (nums[i] == 6) // if the number is six
             {
-
+                for (int j = i+1; j < nums.length; j++) // look through the rest of the array
+                {
+                    if (nums[j] == 7) // find the first seven
+                    {
+                        // Swap the number after the six for the seven
+                        int temp = nums[i+1];
+                        nums[i+1] = nums[j];
+                        nums[j] = temp;
+                    }
+                }
             }
         }
+        return nums;
     }
 
     public static boolean nestedSequence(CString outer, CString inner)
     {
+        // Sort both CStrings into ascending order
+        outer.sortAscending();
+        inner.sortAscending();
 
+        // Convert both to numeric arrays
+        int[] out = toNumerical(outer, 0);
+        int[] in = toNumerical(inner, 0);
+
+        // Loop through all the characters in the inner CString
+        int i = 0;
+        while(i < in.length)
+        {
+            // Loop through all the characters in the outer CString
+            int j = 0;
+            while(j < out.length) // Use a while loop since we don't know how many times we'll have to go through the outer array
+            {
+                if (in[i] == out[j]) // If the inner value is in the outer array
+                {
+                    i++; // We've found the character in the outer array, so move on to the next one
+                }
+                else
+                {
+                    j++; // keep looking through the inner array
+                }
+            }
+            return false; // if we get through the entire outer array without finding the value, the test fails
+        }
+        return true; // if we get through the entire thing without the test failing, the test succeeds and each value has been found inside the outer loop
     }
 
     public static CString decrypt(CString str)
     {
-
+        
     }
 }
