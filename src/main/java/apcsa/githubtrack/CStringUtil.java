@@ -138,7 +138,14 @@ public class CStringUtil
 
     public static int[] memeifyArray(int[] nums)
     {
-        
+        for (int i = 0; i < nums.length; i++)
+        {
+            for (int j = i+1; I)
+            if (nums[i] == 6)
+            {
+
+            }
+        }
     }
 
     public static boolean nestedSequence(CString outer, CString inner)
@@ -148,6 +155,6 @@ public class CStringUtil
 
     public static CString decrypt(CString str)
     {
-        
+
     }
 }
