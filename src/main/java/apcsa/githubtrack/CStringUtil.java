@@ -191,6 +191,20 @@ public class CStringUtil
 
     public static CString decrypt(CString str)
     {
+        // Change to the numerical representation of the CString
+        int[] numerical = toNumerical(str, 0);
+
+        int numClumps = 0; //initialize clump variable
+
+        // Loop through the numerical array
+        for (int i = 0; i < numerical.length; i++)
+        {
+            if (numerical[i+1] == numerical[i]) // if the adjacent values are the same
+            {
+                numClumps++;
+            }
+        }
         
+        return str;
     }
 }
